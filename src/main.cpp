@@ -1063,16 +1063,16 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 50 * COIN;
+    int64 nSubsidy = 69000 * COIN;
 
-    // Subsidy is cut in half every 840000 blocks, which will occur approximately every 4 years
-    nSubsidy >>= (nHeight / 840000); // BootyCoin: 840k blocks in ~4 years
+    // Subsidy is cut in half every 600000 blocks, which will occur approximately every 4 years
+    nSubsidy >>= (nHeight / 500000); // BootyCoin: 500k blocks in ~3.3 years
 
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 3.5 * 24 * 60 * 60; // BootyCoin: 3.5 days
-static const int64 nTargetSpacing = 2.5 * 60; // BootyCoin: 2.5 minutes
+static const int64 nTargetTimespan = 6.9 * 24 * 60 * 60; // BootyCoin: 6.9 days
+static const int64 nTargetSpacing = 203; // BootyCoin: 3:23 minutes
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
@@ -2756,7 +2756,7 @@ bool InitBlockIndex() {
         //   vMerkleTree: 97ddfbbae6
 
         // Genesis block
-        const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
+        const char* pszTimestamp = "11/Feb/2014 7th Annual Crunchies; Day 4 of 2014 Sochi winter games";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2768,13 +2768,13 @@ bool InitBlockIndex() {
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1317972665;
+        block.nTime    = 1392105896;
         block.nBits    = 0x1e0ffff0;
         block.nNonce   = 2084524493;
 
         if (fTestNet)
         {
-            block.nTime    = 1317798646;
+            block.nTime    = 1392105896;
             block.nNonce   = 385270584;
         }
 
