@@ -60,6 +60,16 @@ dependencies immediately - no other work required. If you're unsure, read
 the instructions through first in order to assess what you want to do.
 Homebrew is a little more popular among those newer to OS X.
 
+Note: 
+Mountain Lion users with XCode 5.0 
+You will be missing llvm-g++ on your path. 
+Either add /Developer/user/bin to your PATH or symlink as instructed here:
+http://www.mac-forums.com/forums/os-x-operating-system/269002-xcode-failed-install-g.html#post1380104
+
+Mavericks users
+Be sure to uncomment the following in makefile.osx
+# CFLAGS += -stdlib=libstdc++
+
 The installation of the actual dependencies is covered in the Instructions
 sections below.
 
