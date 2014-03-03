@@ -31,7 +31,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x7da6c216f18ba6409e99e40bf0ba99b1481dcc793adf9d09908735208a3e363f");
+uint256 hashGenesisBlock("0xe2c962bd9abaed56b9f9e85052b9dc25e5168818d1b49881af3c1eaddcf71281");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // BootyCoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -2756,7 +2756,7 @@ bool InitBlockIndex() {
         //   vMerkleTree: 97ddfbbae6
 
         // Genesis block
-        const char* pszTimestamp = "11/Feb/2014 - BitCoin wins best technology achievement at 7th Annual Crunchies. Award accepted by Peter Vessenes";
+        const char* pszTimestamp = "11/Feb/2014 - BitCoin wins best technology";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2770,12 +2770,12 @@ bool InitBlockIndex() {
         block.nVersion = 1;
         block.nTime    = 1392163388;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 446296;
+        block.nNonce   = 0;
 
         if (fTestNet)
         {
-            block.nTime    = 1392163388;
-            block.nNonce   = 446296;
+            block.nTime    = 1393811502;
+            block.nNonce   = 2184877;
         }
 
         //// debug print
@@ -2783,7 +2783,7 @@ bool InitBlockIndex() {
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x5ab383cdb6b568b86faf845f1b1a2fba63d10762c9aa3d065d5f06384f90a3e6"));
+        assert(block.hashMerkleRoot == uint256("0x3f575dd2f23e26feaba89d3e9059ee4419a4c32ae7b86267b4cf73ff5e0cc37b"));
         block.print();
         // If genesis block hash does not match, then generate new genesis hash.
 		if (block.GetHash() != hashGenesisBlock)
@@ -2799,7 +2799,7 @@ bool InitBlockIndex() {
 				static char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
 				            scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
 //				thash = scrypt_blockhash(BEGIN(block.nVersion));
-				printf("hash: %s hashTarget %s", thash.ToString().c_str(), hashTarget.ToString().c_str());
+				//printf("      hash: %s\nhashTarget: %s\n", thash.ToString().c_str(), hashTarget.ToString().c_str());
 				if (thash <= hashTarget)
 					break;
 				if ((block.nNonce & 0xFFF) == 0)
